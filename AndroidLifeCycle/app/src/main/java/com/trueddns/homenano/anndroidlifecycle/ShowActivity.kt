@@ -3,11 +3,24 @@ package com.trueddns.homenano.anndroidlifecycle
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.trueddns.homenano.anndroidlifecycle.databinding.ActivityShowBinding
+
 
 class ShowActivity : AppCompatActivity() {
+
+    val binding: ActivityShowBinding by lazy { ActivityShowBinding.inflate(layoutInflater) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show)
+
+        val intent = intent
+
+        val name = intent.getStringExtra("name")
+        binding.textView.text = name!!
+
+        setContentView(binding.root)
+
         print("onCreate2")
     }
 

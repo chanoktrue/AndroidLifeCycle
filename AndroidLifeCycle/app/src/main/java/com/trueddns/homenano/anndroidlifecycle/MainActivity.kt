@@ -27,10 +27,12 @@ class MainActivity : AppCompatActivity() {
         print("onCreate")
 
         binding.titleTextView.text = "Main Activity"
+        binding.nameTextView.text = " Ok....."
 
         binding.showButton.setOnClickListener {
             binding.titleTextView.text = "showActivity"
             val intent = Intent(this, ShowActivity::class.java)
+            intent.putExtra("name", binding.nameTextView.text)
             startActivity(intent)
         }
 
