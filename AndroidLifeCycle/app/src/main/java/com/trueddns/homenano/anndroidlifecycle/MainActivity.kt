@@ -6,15 +6,25 @@ import android.os.Bundle
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
 
+    private var showButton: Button? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         print("onCreate")
+
+        showButton = findViewById<Button>(R.id.showButton)
+
+        showButton!!.setOnClickListener {
+            val intent = Intent(this, ShowActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onStart() {
@@ -25,9 +35,6 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         print("onResume")
-
-        val intent = Intent(this, ShowActivity::class.java)
-        startActivity(intent)
 
     }
 
