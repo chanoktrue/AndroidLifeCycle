@@ -8,23 +8,44 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.trueddns.homenano.anndroidlifecycle.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
 
-    private var showButton: Button? = null
+//    private var showButton: Button? = null
+
+//    private val showButton: Button by lazy{ findViewById<Button>(R.id.showButton)}
+//
+    private  val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+
+//    val binding = ActivityMainBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         print("onCreate")
 
-        showButton = findViewById<Button>(R.id.showButton)
+        binding.titleTextView.text = "Main Activity"
 
-        showButton!!.setOnClickListener {
+        binding.showButton.setOnClickListener {
+            binding.titleTextView.text = "showActivity"
             val intent = Intent(this, ShowActivity::class.java)
             startActivity(intent)
         }
+
+        setContentView(binding.root)
+
+
+//        showButton = findViewById<Button>(R.id.showButton)
+
+//        showButton!!.setOnClickListener {
+//            val intent = Intent(this, ShowActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        binding.titleTextView.text = "Test Binding..."
+
     }
 
     override fun onStart() {
@@ -60,6 +81,7 @@ class MainActivity : AppCompatActivity() {
 
     fun print(msg: String) {
         Log.e("Activity State", msg)
+        binding.titleTextView.text = msg
     }
 
 }
